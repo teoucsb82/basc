@@ -1,13 +1,7 @@
-p#notice = notice
-
-p
-  strong Title:
-  = @event.title
-p
-  strong Description:
-  = @event.description
-p
-  strong Date:
-  = @event.date
-
+.jumbotron
+  h1.display-3 = @event.title
+  h2 = @event.date
+  p.lead = @event.description
+  p = number_to_currency(@event.price)
+  p = link_to "Buy Tickets", new_ticket_path, class: 'btn btn-lg btn-success', role: 'button'
 = link_to 'All Events', events_path
