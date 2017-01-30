@@ -1,3 +1,8 @@
-h1 Tickets#new
-p Find me in app/views/tickets/new.html.slim
+= simple_form_for([@event, @ticket]) do |f|
+  = f.error_notification
 
+  .form-inputs
+    = f.input :event_id, as: :hidden, input_html: { value: @event.id }
+
+  .form-actions
+    = f.button :submit
