@@ -4,10 +4,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def authenticate_admin!
-    return redirect_to root_url, notice: 'Unathorized' unless admin? && authenticate_user!
+    return redirect_to root_url unless admin_user? && authenticate_user!
   end
 
-  def admin?
+  private
+  def admin_user?
     current_user && current_user.admin?
   end
 end
