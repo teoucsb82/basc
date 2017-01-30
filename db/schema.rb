@@ -11,14 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_170_130_054_945) do
+ActiveRecord::Schema.define(version: 20_170_130_062_203) do
   create_table 'events', force: :cascade do |t|
     t.string   'title'
     t.text     'description'
     t.date     'date'
-    t.datetime 'created_at',  null: false
-    t.datetime 'updated_at',  null: false
+    t.datetime 'created_at',                          null: false
+    t.datetime 'updated_at',                          null: false
     t.string   'slug'
+    t.decimal  'price', precision: 8, scale: 2
   end
 
   add_index 'events', ['slug'], name: 'index_events_on_slug', unique: true
@@ -35,6 +36,16 @@ ActiveRecord::Schema.define(version: 20_170_130_054_945) do
   add_index 'friendly_id_slugs', %w(slug sluggable_type), name: 'index_friendly_id_slugs_on_slug_and_sluggable_type'
   add_index 'friendly_id_slugs', ['sluggable_id'], name: 'index_friendly_id_slugs_on_sluggable_id'
   add_index 'friendly_id_slugs', ['sluggable_type'], name: 'index_friendly_id_slugs_on_sluggable_type'
+
+  create_table 'tickets', force: :cascade do |t|
+    t.integer  'event_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.integer  'user_id'
+  end
+
+  add_index 'tickets', ['event_id'], name: 'index_tickets_on_event_id'
+  add_index 'tickets', ['user_id'], name: 'index_tickets_on_user_id'
 
   create_table 'users', force: :cascade do |t|
     t.string   'email',                  default: '', null: false

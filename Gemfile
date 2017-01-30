@@ -13,6 +13,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'simple_form'
 gem 'slim-rails'
+gem 'stripe'
 gem 'uglifier', '>= 1.3.0'
 
 group :production do
@@ -26,6 +27,7 @@ group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'byebug'
+  gem 'dotenv-rails'
   gem 'minitest'
   gem 'pry'
   gem 'rspec-rails'
