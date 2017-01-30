@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
-  resources :events
-  devise_for :users
-  get 'pages/home'
   root 'pages#home'
+  devise_for :users
+
+  namespace :admin do
+    resources :events
+  end
+
+  resources :events, only: [:index, :show]
+  get 'pages/home'
 end
