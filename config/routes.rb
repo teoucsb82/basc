@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   end
 
   resources :events, only: [:index, :show] do
-    resources :tickets, only: [:new, :create, :show]
+    resources :tickets, only: [:create, :show]
   end
   resources :tickets, only: [:index]
   get 'pages/home'

@@ -3,5 +3,10 @@
   h2 = @event.date
   p.lead = @event.description
   p = number_to_currency(@event.price)
-  p = link_to "Buy Tickets", new_event_ticket_path(@event), class: 'btn btn-lg btn-success', role: 'button'
+  = simple_form_for([@event, @ticket]) do |f|
+    = f.error_notification
+    .form-inputs
+      = f.input :event_id, as: :hidden, input_html: { value: @event.id }
+    script.stripe-button data-amount=stripe_currency(@event.price) data-description='1 Ticket' data-image='http://bayareasocialclub.org/wp-content/uploads/2017/01/BASC1.png' data-key=ENV['STRIPE_TEST_PUBLISHABLE_KEY'] data-locale='auto' data-name='Bay Area Social Club' data-zip-code='true' src='https://checkout.stripe.com/checkout.js'
+
 = link_to 'All Events', events_path

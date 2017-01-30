@@ -15,18 +15,13 @@ class TicketsController < ApplicationController
     @ticket = Ticket.find(params[:id])
   end
 
-  # GET /tickets/new
-  def new
-    @ticket = Ticket.new
-  end
-
   # POST /tickets
   # POST /tickets.json
   def create
     @ticket = Ticket.new(ticket_params)
 
     respond_to do |format|
-      if @ticket.save
+      if @ticket.save && create_charge
         format.html { redirect_to event_ticket_path(@event, @ticket), notice: 'ticket was successfully created.' }
         format.json { render :show, status: :created, location: @ticket }
       else
@@ -37,6 +32,22 @@ class TicketsController < ApplicationController
   end
 
   private
+
+  def create_charge
+    # Token is created using Stripe.js or Checkout!
+    # Get the payment token submitted by the form:
+    token = params[:stripeToken]
+
+    # Charge the user's card:
+    charge = Stripe::Charge.create(
+      amount: (@event.price * 100).to_i,
+      currency: 'usd',
+      description: @event.title,
+      metadata: { 'ticket_id' => @ticket.id },
+      source: token
+    )
+  end
+
   def set_event
     @event = Event.find(params[:event_id])
   end
