@@ -2,9 +2,9 @@ class MetaData
   def initialize(options = {})
     @title       = options[:title]
     @description = options[:description]
-    @image       = options[:image]
     @keywords    = options[:keywords]
     @current_url = options[:current_url]
+    @image       = 'http://res.cloudinary.com/viadeca/image/upload/v1485804369/basc_ncweef.jpg'
   end
 
   def seo
@@ -15,12 +15,12 @@ class MetaData
       keywords: @keywords,
       description: @description,
       image_src: @image,
-      author: 'My Name',
-      canonical: 'http://yoursite.com/canonical/url',
+      author: "Teo Dell'Amico",
+      canonical: 'http://basc.herokuapp.com',
       reverse: true,
       twitter: {
         card: 'summary_large_image',
-        site: '@twitterHandle',
+        site: '@bayareasocialclub',
         title: @title,
         description: @description,
         image: @image
@@ -32,8 +32,8 @@ class MetaData
         image: @image
       },
       icon: [
-        { href: '/images/icons/icon_96.png', sizes: '32x32 96x96', type: 'image/png' },
-        { href: '/images/icons/icon_itouch_precomp_32.png', rel: 'apple-touch-icon-precomposed', sizes: '32x32', type: 'image/png' }
+        { href: @image, sizes: '32x32 96x96', type: 'image/png' },
+        { href: @image, rel: 'apple-touch-icon-precomposed', sizes: '32x32', type: 'image/png' }
       ]
     }
   end
