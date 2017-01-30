@@ -6,7 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-require 'dotenv/load'
+require 'dotenv/load' unless Rails.env.production?
 
 module Starter
   class Application < Rails::Application
