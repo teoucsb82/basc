@@ -5,6 +5,7 @@ class MetaData
     @keywords    = options[:keywords]
     @current_url = options[:current_url]
     @image       = 'http://res.cloudinary.com/viadeca/image/upload/v1485804369/basc_ncweef.jpg'
+    @icon        = 'http://bayareasocialclub.org/wp-content/uploads/2017/01/BASC1.png'
   end
 
   def seo
@@ -32,8 +33,8 @@ class MetaData
         image: @image
       },
       icon: [
-        { href: @image, sizes: '32x32 96x96', type: 'image/png' },
-        { href: @image, rel: 'apple-touch-icon-precomposed', sizes: '32x32', type: 'image/png' }
+        { href: @icon, sizes: '32x32 96x96', type: 'image/png' },
+        { href: @icon, rel: 'apple-touch-icon-precomposed', sizes: '32x32', type: 'image/png' }
       ]
     }
   end
